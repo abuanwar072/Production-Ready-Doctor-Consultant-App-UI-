@@ -1,3 +1,6 @@
+
+// Once we use them i will explain it again
+
 class Category {
   final String icon, title;
 
