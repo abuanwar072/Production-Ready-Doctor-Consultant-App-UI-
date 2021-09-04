@@ -1,12 +1,11 @@
-import 'package:doctor_app/constants.dart';
-import 'package:doctor_app/screens/auth/sign_in_screen.dart';
+import 'package:doctor_app/screens/auth/sign_up_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:form_field_validator/form_field_validator.dart';
 
-import 'components/sign_up_form.dart';
+import '../../constants.dart';
+import 'components/sign_in_form.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignInScreen extends StatelessWidget {
   // It's time to validat the text field
   final _formKey = GlobalKey<FormState>();
 
@@ -23,7 +22,9 @@ class SignUpScreen extends StatelessWidget {
             height: MediaQuery.of(context).size.height,
             // Now it takes 100% of our height
           ),
-          Center(
+          Padding(
+            padding:
+                EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.1),
             child: SafeArea(
               child: SingleChildScrollView(
                 padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
@@ -31,7 +32,7 @@ class SignUpScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Create Account",
+                      "Sign In",
                       style: Theme.of(context)
                           .textTheme
                           .headline5!
@@ -39,22 +40,23 @@ class SignUpScreen extends StatelessWidget {
                     ),
                     Row(
                       children: [
-                        Text("Already have an account?"),
+                        Text("Don't have an account?"),
                         TextButton(
                           onPressed: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => SignInScreen(),
-                              )),
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SignUpScreen(),
+                            ),
+                          ),
                           child: Text(
-                            "Sign In!",
+                            "Sign Up!",
                             style: TextStyle(fontWeight: FontWeight.bold),
                           ),
                         ),
                       ],
                     ),
                     const SizedBox(height: defaultPadding * 2),
-                    SignUpForm(formKey: _formKey),
+                    SignInForm(formKey: _formKey),
                     const SizedBox(height: defaultPadding * 2),
                     SizedBox(
                       width: double.infinity,
@@ -64,9 +66,10 @@ class SignUpScreen extends StatelessWidget {
                             // Sign up form is done
                             // It saved our inputs
                             _formKey.currentState!.save();
+                            //  Sign in also done
                           }
                         },
-                        child: Text("Sign Up"),
+                        child: Text("Sign In"),
                       ),
                     ),
                   ],
