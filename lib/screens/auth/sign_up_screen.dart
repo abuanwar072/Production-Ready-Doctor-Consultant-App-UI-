@@ -2,14 +2,19 @@ import 'package:doctor_app/constants.dart';
 import 'package:doctor_app/screens/auth/sign_in_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:form_field_validator/form_field_validator.dart';
-
 import 'components/sign_up_form.dart';
 
 class SignUpScreen extends StatelessWidget {
   static final route = '/signUpScreen';
   // It's time to validat the text field
   final _formKey = GlobalKey<FormState>();
+
+  Future<void> _trySignUp() async {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      //After successfully signing up, the app should reroute you to the login page and ask you to login
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,13 +62,7 @@ class SignUpScreen extends StatelessWidget {
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            // Sign up form is done
-                            // It saved our inputs
-                            _formKey.currentState!.save();
-                          }
-                        },
+                        onPressed: _trySignUp,
                         child: Text("Sign Up"),
                       ),
                     ),

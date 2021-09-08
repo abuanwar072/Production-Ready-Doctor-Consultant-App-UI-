@@ -31,10 +31,9 @@ class SignInForm extends StatelessWidget {
           const SizedBox(height: defaultPadding),
           TextFieldName(text: "Password"),
           TextFormField(
-            // We want to hide our password
             obscureText: true,
             decoration: InputDecoration(hintText: "******"),
-            validator: passwordValidator,
+            validator: signInPasswordValidator,
             onSaved: (password) => _password = password!,
           ),
           const SizedBox(height: defaultPadding),

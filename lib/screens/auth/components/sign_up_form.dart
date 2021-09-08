@@ -4,14 +4,18 @@ import 'package:form_field_validator/form_field_validator.dart';
 import '../../../constants.dart';
 
 class SignUpForm extends StatelessWidget {
-   SignUpForm({
+  SignUpForm({
     Key? key,
     required this.formKey,
   }) : super(key: key);
 
   final GlobalKey formKey;
 
-  late String _userName, _email, _password, _phoneNumber;
+  late String _userName = '',
+      _email = '',
+      _password = '',
+      _confirmPassword = '',
+      _phoneNumber = '';
 
   @override
   Widget build(BuildContext context) {
@@ -53,19 +57,21 @@ class SignUpForm extends StatelessWidget {
           TextFormField(
             // We want to hide our password
             obscureText: true,
-            decoration: InputDecoration(hintText: "******"),
-            validator: passwordValidator,
+            decoration: InputDecoration(hintText: "********"),
+            validator: signUpPasswordValidator,
             onSaved: (password) => _password = password!,
-            // We also need to validate our password
-            // Now if we type anything it adds that to our password
-            onChanged: (pass) => _password = pass,
+            onChanged: (password) => _password = password,
           ),
           const SizedBox(height: defaultPadding),
           TextFieldName(text: "Confirm Password"),
           TextFormField(
             obscureText: true,
-            decoration: InputDecoration(hintText: "*****"),
-            validator: (pass) => MatchValidator(errorText: "Password do not  match").validateMatch(pass!, _password),
+            decoration: InputDecoration(hintText: "********"),
+            onSaved: (pass) => _confirmPassword = pass!,
+            onChanged: (pass) => _confirmPassword = pass,
+            validator: (pass) =>
+                MatchValidator(errorText: "Passwords do not  match")
+                    .validateMatch(_confirmPassword, _password),
           ),
         ],
       ),

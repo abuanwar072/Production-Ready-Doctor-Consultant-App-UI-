@@ -11,6 +11,14 @@ class SignInScreen extends StatelessWidget {
   // It's time to validat the text field
   final _formKey = GlobalKey<FormState>();
 
+  //This method needs to return a future since validation is going to take some time when the backend is implemented
+  Future<void> _tryLogin() async {
+    if (_formKey.currentState!.validate()) {
+      _formKey.currentState!.save();
+      //After the user's authenticity is confirmed, the app should route you to homepage
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     // But still same problem, let's fixed it
@@ -59,14 +67,7 @@ class SignInScreen extends StatelessWidget {
                     SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            // Sign up form is done
-                            // It saved our inputs
-                            _formKey.currentState!.save();
-                            //  Sign in also done
-                          }
-                        },
+                        onPressed: _tryLogin,
                         child: Text("Sign In"),
                       ),
                     ),
