@@ -1,7 +1,9 @@
+import 'package:doctor_app/screens/auth/sign_in_screen.dart';
 import 'package:doctor_app/screens/welcome/welcome_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'constants.dart';
+import 'screens/auth/sign_up_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -31,6 +33,10 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: WelcomeScreen(),
+      routes: {
+        SignInScreen.route: (context) => SignInScreen(),
+        SignUpScreen.route: (context) => SignUpScreen(),
+      },
     );
   }
 }

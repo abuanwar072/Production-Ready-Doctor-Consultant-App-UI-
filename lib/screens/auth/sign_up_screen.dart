@@ -7,6 +7,7 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'components/sign_up_form.dart';
 
 class SignUpScreen extends StatelessWidget {
+  static final route = '/signUpScreen';
   // It's time to validat the text field
   final _formKey = GlobalKey<FormState>();
 
@@ -41,11 +42,8 @@ class SignUpScreen extends StatelessWidget {
                       children: [
                         Text("Already have an account?"),
                         TextButton(
-                          onPressed: () => Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => SignInScreen(),
-                              )),
+                          onPressed: () => Navigator.pushReplacementNamed(
+                              context, SignInScreen.route),
                           child: Text(
                             "Sign In!",
                             style: TextStyle(fontWeight: FontWeight.bold),

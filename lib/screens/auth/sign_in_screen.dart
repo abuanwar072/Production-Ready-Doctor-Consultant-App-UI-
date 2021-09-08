@@ -6,6 +6,8 @@ import '../../constants.dart';
 import 'components/sign_in_form.dart';
 
 class SignInScreen extends StatelessWidget {
+  // this is the route name that is going to be used in MaterialApps routes parameter
+  static final route = '/signInScreen';
   // It's time to validat the text field
   final _formKey = GlobalKey<FormState>();
 
@@ -42,12 +44,8 @@ class SignInScreen extends StatelessWidget {
                       children: [
                         Text("Don't have an account?"),
                         TextButton(
-                          onPressed: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => SignUpScreen(),
-                            ),
-                          ),
+                          onPressed: () => Navigator.pushReplacementNamed(
+                              context, SignUpScreen.route),
                           child: Text(
                             "Sign Up!",
                             style: TextStyle(fontWeight: FontWeight.bold),
